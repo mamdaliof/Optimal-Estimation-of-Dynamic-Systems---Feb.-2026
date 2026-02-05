@@ -2,7 +2,7 @@ clc
 clear all 
 close all
 % ---------------------------- p(x) ---------------------------- %
-x = linspace(0,8,1000);
+x = linspace(0,6,1000);
 
 plot(x, px(x));
 xlabel('x [m]');
@@ -10,7 +10,7 @@ ylabel('p(x)');
 grid on;
 
 % ---------------------------- p(z|x) ---------------------------- %
-z = linspace(0,8,1000);
+z = linspace(0,6,1000);
 
 x1 = 1.5;
 x2 = 2.0;
@@ -27,14 +27,14 @@ grid on;
 % ---------------------------- p(z) ---------------------------- %
 
 figure;
-z = linspace(0,8,1000);
+z = linspace(0,6,1000);
 plot(z, pz(z));
 
 
 % ---------------------------- p(x|z) ---------------------------- %
 
 % Calculate and plot p(x|z) for z=3.1 and z=4.0
-x = linspace(0.5, 4.5, 1000);  % Wide range covering posteriors
+x = linspace(0, 6, 1000);  % Wide range covering posteriors
 
 figure;
 hold on;
