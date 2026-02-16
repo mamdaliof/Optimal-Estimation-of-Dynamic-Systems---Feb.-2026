@@ -88,45 +88,6 @@ legend('Measurements', 'z=x Reference', 'Linear MMSE', 'Unbiased Linear MMSE', '
 grid on
 hold off
 
-%% Performance Evaluation on Dataset 1 (Training Set)
-fprintf('=== Performance on Dataset 1 (Training Set) ===\n\n');
-
-% Apply linear MMSE estimator 
-x_hat_lMMSE_set1 = estimator_lMMSE(data.z1, alpha);
-
-error_lMMSE_set1 = data.x1 - x_hat_lMMSE_set1;
-
-bias_lMMSE_set1 = mean(error_lMMSE_set1);
-variance_lMMSE_set1 = var(error_lMMSE_set1);
-MSE_lMMSE_set1 = mean(error_lMMSE_set1.^2);
-
-fprintf('Linear MMSE Estimator on Dataset 1:\n');
-fprintf('Bias (mean of errors):     %.6f\n', bias_lMMSE_set1);
-fprintf('Variance of errors:        %.6f\n', variance_lMMSE_set1);
-fprintf('MSE:                       %.6f\n\n', MSE_lMMSE_set1);
-
-% Apply unbiased linear MMSE estimator 
-x_hat_ulMMSE_set1 = estimator_ulMMSE(data.z1, alpha_opt, beta_opt);
-
-% Calculate estimation errors for unbiased linear MMSE
-error_ulMMSE_set1 = data.x1 - x_hat_ulMMSE_set1;
-
-% Calculate bias, variance, and MSE
-bias_ulMMSE_set1 = mean(error_ulMMSE_set1);
-variance_ulMMSE_set1 = var(error_ulMMSE_set1);
-MSE_ulMMSE_set1 = mean(error_ulMMSE_set1.^2);
-
-fprintf('Unbiased Linear MMSE Estimator on Dataset 1:\n');
-fprintf('Bias (mean of errors):     %.6f\n', bias_ulMMSE_set1);
-fprintf('Variance of errors:        %.6f\n', variance_ulMMSE_set1);
-fprintf('MSE:                       %.6f\n\n', MSE_ulMMSE_set1);
-
-fprintf('Dataset 1 Comparison:\n');
-fprintf('Linear MMSE:     Bias = %.6f, Variance = %.6f, MSE = %.6f\n', ...
-    bias_lMMSE_set1, variance_lMMSE_set1, MSE_lMMSE_set1);
-fprintf('Unbiased LMMSE:  Bias = %.6f, Variance = %.6f, MSE = %.6f\n\n', ...
-    bias_ulMMSE_set1, variance_ulMMSE_set1, MSE_ulMMSE_set1);
-
 %% Estimator Functions
 function x_hat = estimator_lMMSE(z, alpha)
     x_hat = alpha * z;
@@ -136,51 +97,95 @@ function x_hat = estimator_ulMMSE(z, alpha_opt, beta_opt)
     x_hat = alpha_opt * z + beta_opt;
 end
 
+
+%% Performance Evaluation on Dataset 1 (Training Set)
+fprintf('=== Performance on Dataset 1 (Training Set) ===\n\n');
+
+% Apply linear MMSE estimator 
+x_hat_lMMSE_set1 = estimator_lMMSE(data.z1, alpha);
+error_lMMSE_set1 = data.x1 - x_hat_lMMSE_set1;
+bias_lMMSE_set1 = mean(error_lMMSE_set1);
+variance_lMMSE_set1 = var(error_lMMSE_set1);
+MSE_lMMSE_set1 = mean(error_lMMSE_set1.^2);
+MAE_lMMSE_set1 = mean(abs(error_lMMSE_set1));
+
+fprintf('Linear MMSE Estimator on Dataset 1:\n');
+fprintf('Bias (mean of errors):     %.6f\n', bias_lMMSE_set1);
+fprintf('Variance of errors:        %.6f\n', variance_lMMSE_set1);
+fprintf('MSE:                       %.6f\n', MSE_lMMSE_set1);
+fprintf('MAE:                       %.6f\n\n', MAE_lMMSE_set1);
+
+% Apply unbiased linear MMSE estimator 
+x_hat_ulMMSE_set1 = estimator_ulMMSE(data.z1, alpha_opt, beta_opt);
+error_ulMMSE_set1 = data.x1 - x_hat_ulMMSE_set1;
+bias_ulMMSE_set1 = mean(error_ulMMSE_set1);
+variance_ulMMSE_set1 = var(error_ulMMSE_set1);
+MSE_ulMMSE_set1 = mean(error_ulMMSE_set1.^2);
+MAE_ulMMSE_set1 = mean(abs(error_ulMMSE_set1));
+
+fprintf('Unbiased Linear MMSE Estimator on Dataset 1:\n');
+fprintf('Bias (mean of errors):     %.6f\n', bias_ulMMSE_set1);
+fprintf('Variance of errors:        %.6f\n', variance_ulMMSE_set1);
+fprintf('MSE:                       %.6f\n', MSE_ulMMSE_set1);
+fprintf('MAE:                       %.6f\n\n', MAE_ulMMSE_set1);
+
+fprintf('Dataset 1 Comparison:\n');
+fprintf('Linear MMSE:     Bias = %.6f, Variance = %.6f, MSE = %.6f, MAE = %.6f\n', ...
+    bias_lMMSE_set1, variance_lMMSE_set1, MSE_lMMSE_set1, MAE_lMMSE_set1);
+fprintf('Unbiased LMMSE:  Bias = %.6f, Variance = %.6f, MSE = %.6f, MAE = %.6f\n\n', ...
+    bias_ulMMSE_set1, variance_ulMMSE_set1, MSE_ulMMSE_set1, MAE_ulMMSE_set1);
+
+
 %% Q4
 data2 = load("depthgauge_data_set2.mat");
 
 % Apply linear MMSE estimator
 x_hat_lMMSE_set2 = estimator_lMMSE(data2.z2, alpha);
-
 error_lMMSE = data2.x2 - x_hat_lMMSE_set2;
-
 bias_lMMSE = mean(error_lMMSE);
 variance_lMMSE = var(error_lMMSE);
 MSE_lMMSE = mean(error_lMMSE.^2);
+MAE_lMMSE = mean(abs(error_lMMSE));
 
 fprintf('Q4: Linear MMSE Estimator Performance on Dataset 2:\n');
 fprintf('Bias (mean of errors):     %.6f\n', bias_lMMSE);
 fprintf('Variance of errors:        %.6f\n', variance_lMMSE);
-fprintf('MSE:                       %.6f\n\n', MSE_lMMSE);
+fprintf('MSE:                       %.6f\n', MSE_lMMSE);
+fprintf('MAE:                       %.6f\n\n', MAE_lMMSE);
+
 
 %% Q5
-
 % Apply unbiased linear MMSE estimator
 x_hat_ulMMSE_set2 = estimator_ulMMSE(data2.z2, alpha_opt, beta_opt);
-
 error_ulMMSE = data2.x2 - x_hat_ulMMSE_set2;
-
 bias_ulMMSE = mean(error_ulMMSE);
 variance_ulMMSE = var(error_ulMMSE);
 MSE_ulMMSE = mean(error_ulMMSE.^2);
+MAE_ulMMSE = mean(abs(error_ulMMSE));
 
 fprintf('Q5: Unbiased Linear MMSE Estimator Performance on Dataset 2:\n');
 fprintf('Bias (mean of errors):     %.6f\n', bias_ulMMSE);
 fprintf('Variance of errors:        %.6f\n', variance_ulMMSE);
-fprintf('MSE:                       %.6f\n\n', MSE_ulMMSE);
+fprintf('MSE:                       %.6f\n', MSE_ulMMSE);
+fprintf('MAE:                       %.6f\n\n', MAE_ulMMSE);
 
 %% Comparison
 fprintf('Performance Comparison:\n');
-fprintf('Linear MMSE:     Bias = %.6f, Variance = %.6f, MSE = %.6f\n', ...
-    bias_lMMSE, variance_lMMSE, MSE_lMMSE);
-fprintf('Unbiased LMMSE:  Bias = %.6f, Variance = %.6f, MSE = %.6f\n', ...
-    bias_ulMMSE, variance_ulMMSE, MSE_ulMMSE);
+fprintf('Linear MMSE:     Bias = %.6f, Variance = %.6f, MSE = %.6f, MAE = %.6f\n', ...
+    bias_lMMSE, variance_lMMSE, MSE_lMMSE, MAE_lMMSE);
+fprintf('Unbiased LMMSE:  Bias = %.6f, Variance = %.6f, MSE = %.6f, MAE = %.6f\n', ...
+    bias_ulMMSE, variance_ulMMSE, MSE_ulMMSE, MAE_ulMMSE);
 
 %% Plot
 figure("Name","Q4 & Q5")
-scatter(data.x1, data.z1, 'filled')
+s= scatter(data.x1, data.z1, 'filled')
+s.MarkerFaceAlpha = 0.7;           % face transparency (0..1)
+s.MarkerEdgeAlpha = 0.9;    
+
 hold on
-scatter(data2.x2, data2.z2, 'filled')
+s= scatter(data2.x2, data2.z2, 'filled')
+s.MarkerFaceAlpha = 0.7;           % face transparency (0..1)
+s.MarkerEdgeAlpha = 0.9;    
 
 plot(x_line, x_line, 'r--', 'LineWidth', 1.5)
 
@@ -194,6 +199,6 @@ ylim([0, max(data.z1)+0.1])
 xlabel('Measurement Value (z)')
 ylabel('True Value (x) / Estimate')
 title('Unbiased Linear MMSE Estimator')
-legend('Measurements', 'z=x Reference', 'Linear MMSE', 'Unbiased Linear MMSE', 'Location', 'best')
+legend('train set','test set', 'z=x Reference', 'Linear MMSE', 'Unbiased Linear MMSE', 'Location', 'best')
 grid on
 hold off
