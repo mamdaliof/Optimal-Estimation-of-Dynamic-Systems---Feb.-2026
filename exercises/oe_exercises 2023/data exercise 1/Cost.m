@@ -5,7 +5,7 @@ z_values = [3.1, 4.0];
 x_fine = linspace(0, 6, 5000);
 A = 0.05;  
 
-figure('Position', [100 100 1400 600]);
+figure('Position', [100 100 1800 800]);
 
 for i = 1:length(z_values)
     z = z_values(i);
@@ -37,6 +37,8 @@ for i = 1:length(z_values)
     plot(est_mmse, 0, 'go', 'MarkerSize', 10, 'MarkerFaceColor', 'g', 'DisplayName', sprintf('MMSE=%.3f', est_mmse));
     plot(est_mmae, 0, 'mo', 'MarkerSize', 10, 'MarkerFaceColor', 'm', 'DisplayName', sprintf('MMAE=%.3f', est_mmae));
     plot(est_map,  0, 'rs', 'MarkerSize', 10, 'MarkerFaceColor', 'r', 'DisplayName', sprintf('MAP=%.3f', est_map));
+    ylabel("p(x|z)")
+    xlabel('x (m)')
     hold off;
     title(sprintf('p(x|z=%.1f)', z)); legend('Location', 'best'); grid on;
     
