@@ -2,10 +2,10 @@ clc; clear; close all
 
 %% Initialization
 mu_x = [10; 20];
-C_x = [25 -25; -25 70]*2;
+C_x = [25 -25; -25 70]*1;
 x_0 = [100; 100];
 theta = 35;
-sigma_dtheta = 1;
+sigma_dtheta = 2;
 
 %% Q1 - a 
 
@@ -68,14 +68,14 @@ labels      = {'\theta - \sigma_{\Delta\theta}  (34°)', ...
 
 fig2 = figure; hold on; grid on; axis equal;
 draw_ellipse(mu_x, C_x, 1, 'b', '-');
-plot(x_0(1), x_0(2), 'k^', 'MarkerSize', 10, 'LineWidth', 2, ...
+plot(x_0(1), x_0(2), 'k*', 'MarkerSize', 10, 'LineWidth', 2, ...
      'MarkerFaceColor', 'k', 'DisplayName', 'Beacon x_0');
 plot(mu_x(1), mu_x(2), 'b+', 'MarkerSize', 12, 'LineWidth', 2, ...
      'DisplayName', '\mu_x');
 for i = 1:3
     alpha    = deg2rad(angles_deg(i));
-    xi_line  = mu_x(1) + t * cos(alpha);
-    eta_line = mu_x(2) + t * sin(alpha);
+    xi_line  = x_0(1) + t * cos(alpha + pi);   % +pi reverses the direction
+eta_line = x_0(2) + t * sin(alpha + pi);
     if i == 2
         plot(xi_line, eta_line, 'k', 'LineStyle', line_styles{i}, ...
              'LineWidth', line_widths(i), 'DisplayName', labels{i});
@@ -117,9 +117,9 @@ title(ax3, 'Q3 — Cone + linearized bar');
 axes(ax3); hold on;
 
 for s = [-1, 1]
-    start_pt = mu_x + s * sigma_v * n_perp;
-    xi_bar   = start_pt(1) + t * line_dir(1);
-    eta_bar  = start_pt(2) + t * line_dir(2);
+    start_pt = x_0 + s * sigma_v * n_perp;
+    xi_bar   = start_pt(1) + t * (-line_dir(1));  
+    eta_bar  = start_pt(2) + t * (-line_dir(2));
     plot(xi_bar, eta_bar, 'm-', 'LineWidth', 1, ...
          'DisplayName', sprintf('Bar edge (\\sigma_v = %.2f Nm)', sigma_v));
 end
@@ -184,11 +184,11 @@ plot(x_0(1), x_0(2), 'k^', 'MarkerSize', 10, 'LineWidth', 2, ...
      'MarkerFaceColor', 'k', 'DisplayName', 'Beacon x_0');
 for i = 1:3
     alpha    = deg2rad(angles_deg(i));
-    xi_line  = x_estimated(1) + t * cos(alpha);
-    eta_line = x_estimated(2) + t * sin(alpha);
+    xi_line  = x_0(1) + t * cos(alpha + pi);
+    eta_line = x_0(2) + t * sin(alpha + pi);
     if i == 2
-        plot(xi_line, eta_line, 'k', 'LineStyle', line_styles{i}, ...
-             'LineWidth', line_widths(i), 'DisplayName', labels{i});
+    plot(xi_line, eta_line, 'k', 'LineStyle', line_styles{i}, ...
+           'LineWidth', line_widths(i), 'DisplayName', labels{i});
     else
         plot(xi_line, eta_line, 'Color', [0.5 0.5 0.5], ...
              'LineStyle', line_styles{i}, 'LineWidth', line_widths(i), ...

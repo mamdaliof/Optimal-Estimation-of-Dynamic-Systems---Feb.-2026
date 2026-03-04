@@ -310,3 +310,81 @@
 === Posterior covariance C_e ===
   [51.2778  26.7715]
   [26.7715  37.5488]
+=== C_x Eigenvalues ===
+  lambda_0 = 13.8659
+  lambda_1 = 81.1341
+=== Scaling factors ===
+  a_0 = 3.7237,  a_1 = 9.0074
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.017453 rad
+  sigma_v       = 2.1017 Nm
+  Bar width 2*sigma_v = 4.2033 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 2.1017 Nm
+  C_v           = 4.4170 Nm^2
+  S (innovation cov) = 83.1047
+  K_kalman      = [-0.4190; 0.8625]
+  x_estimated   = [4.1720; 31.9980] Nm
+=== Posterior covariance C_e ===
+  [10.4123  5.0316]
+  [5.0316  8.1740]
+=== C_x Eigenvalues ===
+  lambda_0 = 0.0000
+  lambda_1 = 0.0000
+=== Scaling factors ===
+  a_0 = 0.0000,  a_1 = 0.0000
+=== C_x Eigenvectors (columns of V) ===
+     1     0
+     0     1
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.017453 rad
+  sigma_v       = 2.1017 Nm
+  Bar width 2*sigma_v = 4.2033 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 2.1017 Nm
+  C_v           = 4.4170 Nm^2
+  S (innovation cov) = 4.4170
+  K_kalman      = [-0.0000; 0.0000]
+  x_estimated   = [10.0000; 20.0000] Nm
+=== Posterior covariance C_e ===
+  [0.0000  -0.0000]
+  [-0.0000  0.0000]
+=== C_x Eigenvalues ===
+  lambda_0 = 13.8659
+  lambda_1 = 81.1341
+=== Scaling factors ===
+  a_0 = 3.7237,  a_1 = 9.0074
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.034907 rad
+  sigma_v       = 4.2033 Nm
+  Bar width 2*sigma_v = 8.4066 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 4.2033 Nm
+  C_v           = 17.6678 Nm^2
+  S (innovation cov) = 96.3556
+  K_kalman      = [-0.3614; 0.7439]
+  x_estimated   = [4.9735; 30.3480] Nm
+=== Posterior covariance C_e ===
+  [12.4184  0.9017]
+  [0.9017  16.6764]
