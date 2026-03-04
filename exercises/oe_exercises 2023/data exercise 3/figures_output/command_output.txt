@@ -549,3 +549,368 @@ In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('main', '
 === Posterior covariance C_e ===
   [246.6844  -243.1743]
   [-243.1743  685.9479]
+=== C_x Eigenvalues ===
+  lambda_0 = 138.6594
+  lambda_1 = 811.3406
+=== Scaling factors ===
+  a_0 = 11.7754,  a_1 = 28.4840
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.000000 rad
+  sigma_v       = 0.0000 Nm
+  Bar width 2*sigma_v = 0.0000 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 0.0000 Nm
+  C_v           = 0.0000 Nm^2
+  S (innovation cov) = 786.8777
+  K_kalman      = [-0.4425; 0.9109]
+  x_estimated   = [3.8449; 32.6715] Nm
+=== Posterior covariance C_e ===
+  [95.9344  67.1740]
+  [67.1740  47.0357]
+[Warning: Imaginary parts of complex X and/or Y arguments ignored.] 
+=== C_x Eigenvalues ===
+  lambda_0 = 138.6594
+  lambda_1 = 811.3406
+=== Scaling factors ===
+  a_0 = 11.7754,  a_1 = 28.4840
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.174533 rad
+  sigma_v       = 21.0165 Nm
+  Bar width 2*sigma_v = 42.0331 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 21.0165 Nm
+  C_v           = 441.6953 Nm^2
+  S (innovation cov) = 1228.5729
+  K_kalman      = [-0.2834; 0.5834]
+  x_estimated   = [6.0578; 28.1158] Nm
+=== Posterior covariance C_e ===
+  [151.3239  -46.8561]
+  [-46.8561  281.7888]
+=== C_x Eigenvalues ===
+  lambda_0 = 13.8659
+  lambda_1 = 81.1341
+=== Scaling factors ===
+  a_0 = 3.7237,  a_1 = 9.0074
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.017453 rad
+  sigma_v       = 2.1017 Nm
+  Bar width 2*sigma_v = 4.2033 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 2.1017 Nm
+  C_v           = 4.4170 Nm^2
+  S (innovation cov) = 83.1047
+  K_kalman      = [-0.4190; 0.8625]
+  x_estimated   = [4.1720; 31.9980] Nm
+=== Posterior covariance C_e ===
+  [10.4123  5.0316]
+  [5.0316  8.1740]
+=== C_x Eigenvalues ===
+  lambda_0 = 0.0000
+  lambda_1 = 0.0000
+=== Scaling factors ===
+  a_0 = 0.0000,  a_1 = 0.0000
+=== C_x Eigenvectors (columns of V) ===
+     1     0
+     0     1
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.017453 rad
+  sigma_v       = 2.1017 Nm
+  Bar width 2*sigma_v = 4.2033 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 2.1017 Nm
+  C_v           = 4.4170 Nm^2
+  S (innovation cov) = 4.4170
+  K_kalman      = [-0.0000; 0.0000]
+  x_estimated   = [10.0000; 20.0000] Nm
+=== Posterior covariance C_e ===
+  [0.0000  -0.0000]
+  [-0.0000  0.0000]
+=== C_x Eigenvalues ===
+  lambda_0 = 0.0000
+  lambda_1 = 0.0000
+=== Scaling factors ===
+  a_0 = 0.0000,  a_1 = 0.0000
+=== C_x Eigenvectors (columns of V) ===
+     1     0
+     0     1
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.017453 rad
+  sigma_v       = 2.1017 Nm
+  Bar width 2*sigma_v = 4.2033 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 2.1017 Nm
+  C_v           = 4.4170 Nm^2
+  S (innovation cov) = 4.4170
+  K_kalman      = [-0.0000; 0.0000]
+  x_estimated   = [10.0000; 20.0000] Nm
+=== Posterior covariance C_e ===
+  [0.0000  -0.0000]
+  [-0.0000  0.0000]
+=== C_x Eigenvalues ===
+  lambda_0 = 13.8659
+  lambda_1 = 81.1341
+=== Scaling factors ===
+  a_0 = 3.7237,  a_1 = 9.0074
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.017453 rad
+  sigma_v       = 2.1017 Nm
+  Bar width 2*sigma_v = 4.2033 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 2.1017 Nm
+  C_v           = 4.4170 Nm^2
+  S (innovation cov) = 83.1047
+  K_kalman      = [-0.4190; 0.8625]
+  x_estimated   = [4.1720; 31.9980] Nm
+=== Posterior covariance C_e ===
+  [10.4123  5.0316]
+  [5.0316  8.1740]
+=== C_x Eigenvalues ===
+  lambda_0 = 27.7319
+  lambda_1 = 162.2681
+=== Scaling factors ===
+  a_0 = 5.2661,  a_1 = 12.7385
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.017453 rad
+  sigma_v       = 2.1017 Nm
+  Bar width 2*sigma_v = 4.2033 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 2.1017 Nm
+  C_v           = 4.4170 Nm^2
+  S (innovation cov) = 161.7925
+  K_kalman      = [-0.4304; 0.8861]
+  x_estimated   = [4.0129; 32.3255] Nm
+=== Posterior covariance C_e ===
+  [20.0281  11.7030]
+  [11.7030  12.9723]
+=== C_x Eigenvalues ===
+  lambda_0 = 69.3297
+  lambda_1 = 405.6703
+=== Scaling factors ===
+  a_0 = 8.3264,  a_1 = 20.1413
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.017453 rad
+  sigma_v       = 2.1017 Nm
+  Bar width 2*sigma_v = 4.2033 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 2.1017 Nm
+  C_v           = 4.4170 Nm^2
+  S (innovation cov) = 397.8558
+  K_kalman      = [-0.4376; 0.9008]
+  x_estimated   = [3.9132; 32.5308] Nm
+=== Posterior covariance C_e ===
+  [48.8224  31.8264]
+  [31.8264  27.1424]
+=== C_x Eigenvalues ===
+  lambda_0 = 138.6594
+  lambda_1 = 811.3406
+=== Scaling factors ===
+  a_0 = 11.7754,  a_1 = 28.4840
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.017453 rad
+  sigma_v       = 2.1017 Nm
+  Bar width 2*sigma_v = 4.2033 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 2.1017 Nm
+  C_v           = 4.4170 Nm^2
+  S (innovation cov) = 791.2946
+  K_kalman      = [-0.4400; 0.9059]
+  x_estimated   = [3.8793; 32.6007] Nm
+=== Posterior covariance C_e ===
+  [96.7944  65.4035]
+  [65.4035  50.6805]
+=== C_x Eigenvalues ===
+  lambda_0 = 13.8659
+  lambda_1 = 81.1341
+=== Scaling factors ===
+  a_0 = 3.7237,  a_1 = 9.0074
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.000000 rad
+  sigma_v       = 0.0000 Nm
+  Bar width 2*sigma_v = 0.0000 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 0.0000 Nm
+  C_v           = 0.0000 Nm^2
+  S (innovation cov) = 78.6878
+  K_kalman      = [-0.4425; 0.9109]
+  x_estimated   = [3.8449; 32.6715] Nm
+=== Posterior covariance C_e ===
+  [9.5934  6.7174]
+  [6.7174  4.7036]
+=== C_x Eigenvalues ===
+  lambda_0 = 13.8659
+  lambda_1 = 81.1341
+=== Scaling factors ===
+  a_0 = 3.7237,  a_1 = 9.0074
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.034907 rad
+  sigma_v       = 4.2033 Nm
+  Bar width 2*sigma_v = 8.4066 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 4.2033 Nm
+  C_v           = 17.6678 Nm^2
+  S (innovation cov) = 96.3556
+  K_kalman      = [-0.3614; 0.7439]
+  x_estimated   = [4.9735; 30.3480] Nm
+=== Posterior covariance C_e ===
+  [12.4184  0.9017]
+  [0.9017  16.6764]
+=== C_x Eigenvalues ===
+  lambda_0 = 13.8659
+  lambda_1 = 81.1341
+=== Scaling factors ===
+  a_0 = 3.7237,  a_1 = 9.0074
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.349066 rad
+  sigma_v       = 42.0331 Nm
+  Bar width 2*sigma_v = 84.0662 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 42.0331 Nm
+  C_v           = 1766.7810 Nm^2
+  S (innovation cov) = 1845.4688
+  K_kalman      = [-0.0189; 0.0388]
+  x_estimated   = [9.7376; 20.5403] Nm
+=== Posterior covariance C_e ===
+  [24.3431  -23.6476]
+  [-23.6476  67.2159]
+=== C_x Eigenvalues ===
+  lambda_0 = 13.8659
+  lambda_1 = 81.1341
+=== Scaling factors ===
+  a_0 = 3.7237,  a_1 = 9.0074
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.087266 rad
+  sigma_v       = 10.5083 Nm
+  Bar width 2*sigma_v = 21.0165 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 10.5083 Nm
+  C_v           = 110.4238 Nm^2
+  S (innovation cov) = 189.1116
+  K_kalman      = [-0.1841; 0.3790]
+  x_estimated   = [7.4389; 25.2725] Nm
+=== Posterior covariance C_e ===
+  [18.5895  -11.8027]
+  [-11.8027  42.8307]
+=== C_x Eigenvalues ===
+  lambda_0 = 13.8659
+  lambda_1 = 81.1341
+=== Scaling factors ===
+  a_0 = 3.7237,  a_1 = 9.0074
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 1.570796 rad
+  sigma_v       = 189.1489 Nm
+  Bar width 2*sigma_v = 378.2979 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 189.1489 Nm
+  C_v           = 35777.3160 Nm^2
+  S (innovation cov) = 35856.0037
+  K_kalman      = [-0.0010; 0.0020]
+  x_estimated   = [9.9865; 20.0278] Nm
+=== Posterior covariance C_e ===
+  [24.9662  -24.9304]
+  [-24.9304  69.8567]

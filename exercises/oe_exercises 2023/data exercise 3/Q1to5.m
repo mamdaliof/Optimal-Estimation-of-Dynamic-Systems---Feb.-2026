@@ -2,10 +2,10 @@ clc; clear; close all
 
 %% Initialization
 mu_x = [10; 20];
-C_x = [25 -25; -25 70]*10;
+C_x = [25 -25; -25 70]*1;
 x_0 = [100; 100];
 theta = 35;
-sigma_dtheta = 90;
+sigma_dtheta =90;
 
 %% Q1 - a 
 
