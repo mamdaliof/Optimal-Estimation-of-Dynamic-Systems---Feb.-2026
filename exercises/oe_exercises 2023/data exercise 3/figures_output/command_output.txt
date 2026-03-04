@@ -388,3 +388,164 @@
 === Posterior covariance C_e ===
   [12.4184  0.9017]
   [0.9017  16.6764]
+=== C_x Eigenvalues ===
+  lambda_0 = 138.6594
+  lambda_1 = 811.3406
+=== Scaling factors ===
+  a_0 = 11.7754,  a_1 = 28.4840
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.000000 rad
+  sigma_v       = 0.0000 Nm
+  Bar width 2*sigma_v = 0.0000 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 0.0000 Nm
+  C_v           = 0.0000 Nm^2
+  S (innovation cov) = 786.8777
+  K_kalman      = [-0.4425; 0.9109]
+  x_estimated   = [3.8449; 32.6715] Nm
+=== Posterior covariance C_e ===
+  [95.9344  67.1740]
+  [67.1740  47.0357]
+[Warning: Imaginary parts of complex X and/or Y arguments ignored.] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Q1to5>draw_ellipse', '/MATLAB Drive/Optimal-Estimation-of-Dynamic-Systems---Feb.-2026/exercises/oe_exercises 2023/data exercise 3/Q1to5.m', 55)" style="font-weight:bold">Q1to5>draw_ellipse</a> (<a href="matlab: opentoline('/MATLAB Drive/Optimal-Estimation-of-Dynamic-Systems---Feb.-2026/exercises/oe_exercises 2023/data exercise 3/Q1to5.m',55,0)">line 55</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Q1to5', '/MATLAB Drive/Optimal-Estimation-of-Dynamic-Systems---Feb.-2026/exercises/oe_exercises 2023/data exercise 3/Q1to5.m', 168)" style="font-weight:bold">Q1to5</a> (<a href="matlab: opentoline('/MATLAB Drive/Optimal-Estimation-of-Dynamic-Systems---Feb.-2026/exercises/oe_exercises 2023/data exercise 3/Q1to5.m',168,0)">line 168</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('run', '/MATLAB/toolbox/matlab/lang/run.m', 112)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/MATLAB/toolbox/matlab/lang/run.m',112,0)">line 112</a>)
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('main', '/MATLAB Drive/Optimal-Estimation-of-Dynamic-Systems---Feb.-2026/exercises/oe_exercises 2023/data exercise 3/main.m', 14)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/MATLAB Drive/Optimal-Estimation-of-Dynamic-Systems---Feb.-2026/exercises/oe_exercises 2023/data exercise 3/main.m',14,0)">line 14</a>)] 
+=== C_x Eigenvalues ===
+  lambda_0 = 138.6594
+  lambda_1 = 811.3406
+=== Scaling factors ===
+  a_0 = 11.7754,  a_1 = 28.4840
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.034907 rad
+  sigma_v       = 4.2033 Nm
+  Bar width 2*sigma_v = 8.4066 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 4.2033 Nm
+  C_v           = 17.6678 Nm^2
+  S (innovation cov) = 804.5455
+  K_kalman      = [-0.4328; 0.8909]
+  x_estimated   = [3.9801; 32.3932] Nm
+=== Posterior covariance C_e ===
+  [99.3177  60.2088]
+  [60.2088  61.3748]
+=== C_x Eigenvalues ===
+  lambda_0 = 138.6594
+  lambda_1 = 811.3406
+=== Scaling factors ===
+  a_0 = 11.7754,  a_1 = 28.4840
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.087266 rad
+  sigma_v       = 10.5083 Nm
+  Bar width 2*sigma_v = 21.0165 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 10.5083 Nm
+  C_v           = 110.4238 Nm^2
+  S (innovation cov) = 897.3015
+  K_kalman      = [-0.3880; 0.7988]
+  x_estimated   = [4.6024; 31.1121] Nm
+=== Posterior covariance C_e ===
+  [114.8940  28.1419]
+  [28.1419  127.3909]
+=== C_x Eigenvalues ===
+  lambda_0 = 138.6594
+  lambda_1 = 811.3406
+=== Scaling factors ===
+  a_0 = 11.7754,  a_1 = 28.4840
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.087266 rad
+  sigma_v       = 10.5083 Nm
+  Bar width 2*sigma_v = 21.0165 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 10.5083 Nm
+  C_v           = 110.4238 Nm^2
+  S (innovation cov) = 897.3015
+  K_kalman      = [-0.3880; 0.7988]
+  x_estimated   = [4.6024; 31.1121] Nm
+=== Posterior covariance C_e ===
+  [114.8940  28.1419]
+  [28.1419  127.3909]
+=== C_x Eigenvalues ===
+  lambda_0 = 138.6594
+  lambda_1 = 811.3406
+=== Scaling factors ===
+  a_0 = 11.7754,  a_1 = 28.4840
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 0.349066 rad
+  sigma_v       = 42.0331 Nm
+  Bar width 2*sigma_v = 84.0662 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 42.0331 Nm
+  C_v           = 1766.7810 Nm^2
+  S (innovation cov) = 2553.6587
+  K_kalman      = [-0.1363; 0.2807]
+  x_estimated   = [8.1034; 23.9046] Nm
+=== Posterior covariance C_e ===
+  [202.5266  -152.2668]
+  [-152.2668  498.7973]
+=== C_x Eigenvalues ===
+  lambda_0 = 138.6594
+  lambda_1 = 811.3406
+=== Scaling factors ===
+  a_0 = 11.7754,  a_1 = 28.4840
+=== C_x Eigenvectors (columns of V) ===
+   -0.9135   -0.4068
+   -0.4068    0.9135
+
+=== Q3 ===
+  d             = 120.4159 Nm
+  sigma_dtheta  = 1.570796 rad
+  sigma_v       = 189.1489 Nm
+  Bar width 2*sigma_v = 378.2979 Nm
+=== Q4 ===
+  z             = 24.5576 Nm
+  H             = [-0.5736  0.8192]
+  d             = 120.4159 Nm
+  sigma_v       = 189.1489 Nm
+  C_v           = 35777.3160 Nm^2
+  S (innovation cov) = 36564.1936
+  K_kalman      = [-0.0095; 0.0196]
+  x_estimated   = [9.8675; 20.2727] Nm
+=== Posterior covariance C_e ===
+  [246.6844  -243.1743]
+  [-243.1743  685.9479]

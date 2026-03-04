@@ -1,6 +1,6 @@
 %% Save all open figures and zip them
 output_dir = 'figures_output';
-zip_name   = 'delta=2.zip';
+zip_name   = 'delta=90.zip';
 
 if ~exist(output_dir, 'dir')
     mkdir(output_dir);
