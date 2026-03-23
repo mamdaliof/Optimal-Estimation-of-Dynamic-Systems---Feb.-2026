@@ -54,3 +54,5 @@ a = 30;
 b = 5;
 d = a*speed + b * speed.^3;
 end
+
+

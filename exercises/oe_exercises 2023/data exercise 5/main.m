@@ -31,7 +31,7 @@ H = [I2, Z2, Z2];
 Cn = 49 * I2;      
 load('zradar.mat');  
 N = 100;
- 
+
 x_pred_log = cell(1, N);   % x_hat(i|i-1)
 x_est_log  = cell(1, N);   % x_hat(i|i)
 C_pred_log = cell(1, N);   % C(i|i-1)
@@ -63,46 +63,13 @@ for i = 1:N
     C_pred = F * C_est * F' + Cw;
 end
 
-%% Q2
-I2 = eye(2);
-Z2 = zeros(2);
-H = [I2, Z2, Z2];
-Cn = 49 * I2;
 
-load('zradar.mat');
-N = 100;
-
-x_pred_log = cell(1, N);
-x_est_log  = cell(1, N);
-C_pred_log = cell(1, N);
-C_est_log  = cell(1, N);
-
-x_pred = x_hat_init;
-C_pred = C_init;
-
-for i = 1:N
-    % UPDATE
-    S      = H * C_pred * H' + Cn;
-    K      = C_pred * H' / S;
-    z_tilde = z(:, i) - H * x_pred;
-    x_est  = x_pred + K * z_tilde;
-    C_est  = C_pred - K * S * K';
-
-    x_pred_log{i} = x_pred;
-    C_pred_log{i} = C_pred;
-    x_est_log{i}  = x_est;
-    C_est_log{i}  = C_est;
-
-    % PREDICTION
-    x_pred = F * x_est;
-    C_pred = F * C_est * F' + Cw;
-end
 
 %% Q3 - Plot measurements, estimates, predictions
-% Extract position components
-z_pos     = z;                                         % 2x100 measurements
-x_est_pos = cell2mat(cellfun(@(x) x(1:2), x_est_log,  'UniformOutput', false)); % 2x100
-x_prd_pos = cell2mat(cellfun(@(x) x(1:2), x_pred_log, 'UniformOutput', false)); % 2x100
+
+z_pos     = z;                                         
+x_est_pos = cell2mat(cellfun(@(x) x(1:2), x_est_log,  'UniformOutput', false));
+x_prd_pos = cell2mat(cellfun(@(x) x(1:2), x_pred_log, 'UniformOutput', false)); 
 
 fig_q3 = figure('Name', 'Q3: Radar Tracking');
 plot(z_pos(1,:),     z_pos(2,:),     'b-*', 'MarkerSize',4 , 'DisplayName', 'Measurements');
@@ -138,7 +105,7 @@ for i = 1:3:100
 end
 
 title(ax_q4, 'Estimated Positions with Uncertainty Ellipses (every 3 steps)');
-legend("Measurements", "Estimated positions", "Predicted positions", "Unvertainty region")
+legend("Measurements", "Estimated positions", "Predicted positions", "Uncertainty region")
 
 %% Q5
 [K_ss, C_pred_ss, C_est_ss] = dlqe(F, eye(6), H, Cw, Cn);
@@ -188,6 +155,25 @@ axis equal; legend('Location', 'best');
 xlabel('\xi_1'); ylabel('\xi_2');
 title('Time-variant vs Steady-state Kalman Filter');
 grid on;
+
+
+
+
+
+%% Plot 
+x_pred_ss_pos = cell2mat(cellfun(@(x) x(1:2), x_pred_ss_log, 'UniformOutput', false));
+
+fig_q5p = figure('Name', 'Q5: Time-variant vs Steady-state Kalman predictions');
+plot(z_pos(1,:),        z_pos(2,:),        'b.',  'MarkerSize', 10, 'DisplayName', 'Measurements');
+hold on;
+plot(x_prd_pos(1,:),    x_prd_pos(2,:),    'g-o', 'MarkerSize', 4,  'DisplayName', 'Time-variant estimate');
+plot(x_pred_ss_pos(1,:), x_pred_ss_pos(2,:), 'm-^', 'MarkerSize', 4,  'DisplayName', 'Steady-state estimate');
+axis equal; legend('Location', 'best');
+xlabel('\xi_1'); ylabel('\xi_2');
+title('Time-variant vs Steady-state Kalman Filter prediction');
+grid on;
+
+
 
 %% Plot 
 fig_q5e = figure('Name', 'Q5: Steady-state Uncertainty Ellipses');

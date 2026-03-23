@@ -25,7 +25,7 @@ Cw = blkdiag(Z2, Z2, Cw1);
 
 %% Q2
 
-i = 10; 
+i = 70; 
 n = 100-i; 
 
 xp = zeros(6, i+n+1);    
@@ -47,7 +47,7 @@ plot(x(1, 1:i+n+1), x(2, 1:i+n+1), 'b-o', ...
 
 plot(xp(1, i+1:i+1+n), xp(2, i+1:i+1+n), 'r--o', ...
     'MarkerSize', 3, 'LineWidth', 1.5, ...
-    'DisplayName', 'Predicted path (11 to 100)');
+    'DisplayName', "Predicted path (" + i + " to " + 100 + ")");
 
 % Mark the starting prediction point x(10)
 plot(xp(1, i+1), xp(2, i+1), 'ks', ...
