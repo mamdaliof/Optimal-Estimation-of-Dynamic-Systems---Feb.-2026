@@ -29,19 +29,21 @@ C0_phi = 10^2;
 
 C0 = blkdiag(C0_xi, C0_v, C0_a, C0_t, C0_phi);
 
-%% Q2
+%%  Q2 + Q5
 load('z_yacht.mat');
-
 u = [400; 45];
-
 N = 10000;
 X_est_log = zeros(8, N);
 C_est_log = zeros(8, 8, N);
 
+% NIS log 
+M = length(imeas);
+NIS_log = zeros(1, M);
+NIS_idx = 0;
+
 x_hat = x0;
 C_hat = C0;
 
-% Initial update at i=1
 meas_pos = find(imeas == 1, 1);
 if ~isempty(meas_pos)
     H     = Hjacobian(x_hat, x_beacon);
@@ -52,6 +54,9 @@ if ~isempty(meas_pos)
     inn(3) = mod(inn(3) + 180, 360) - 180;
     x_hat = x_hat + K * inn;
     C_hat = C_hat - K * S * K';
+    % NIS at i=1
+    NIS_idx = NIS_idx + 1;
+    NIS_log(NIS_idx) = inn' / S * inn;
 end
 
 X_est_log(:,1)   = x_hat;
@@ -64,7 +69,7 @@ for i = 1:N-1
     C_pred = F * C_hat * F' + Cw;
 
     % Update at time i+1
-    meas_pos = find(imeas == i+1, 1);   % ✅ correct timing
+    meas_pos = find(imeas == i+1, 1);
     if ~isempty(meas_pos)
         H   = Hjacobian(x_pred, x_beacon);
         S   = H * C_pred * H' + Cn;
@@ -74,6 +79,9 @@ for i = 1:N-1
         inn(3) = mod(inn(3) + 180, 360) - 180;
         x_hat = x_pred + K * inn;
         C_hat = C_pred - K * S * K';
+        % NIS
+        NIS_idx = NIS_idx + 1;
+        NIS_log(NIS_idx) = inn' / S * inn;
     else
         x_hat = x_pred;
         C_hat = C_pred;
@@ -170,4 +178,66 @@ ylabel('y position (m)');
 title('Estimated Path with Uncertainty Regions');
 legend('Estimated path', 'Measurement update', 'uncertainty region', 'Beacon');
 grid on;
+hold off;
+
+
+%% Q5
+
+% Chi-squared 
+dof       = 3;
+chi5  = chi2inv(0.05, dof);   
+chi95 = chi2inv(0.95, dof);  
+
+
+fprintf('Chi2 boundaries (dof=3): lower=%.3f, upper=%.3f\n', chi5, chi95);
+
+% Running mean and variance of NIS
+running_mean = cumsum(NIS_log) ./ (1:M);
+running_var  = zeros(1, M);
+for k = 2:M
+    running_var(k) = var(NIS_log(1:k));
+end
+
+% Count how many NIS values fall outside the 95% acceptance region
+outside = sum(NIS_log < chi5 | NIS_log > chi95);
+fprintf('NIS values outside 95%% bounds: %d / %d (%.1f%%)\n', outside, M, 100*outside/M);
+
+% --- Plot 1: NIS values with chi-squared percentile boundaries ---
+figure;
+stem(1:M, NIS_log, 'b', 'filled', 'MarkerSize', 4);
+hold on;
+yline(chi95, 'r--', 'LineWidth', 1.5, 'DisplayName', '97.5% bound');
+yline(chi5,  'g--', 'LineWidth', 1.5, 'DisplayName', '2.5% bound');
+yline(dof, 'k:',  'LineWidth', 1.5, 'DisplayName', sprintf('E[NIS]=dof=%d', dof));
+xlabel('Measurement index m');
+ylabel('NIS');
+title('Normalized Innovation Squared (NIS)');
+legend('NIS', '97.5% \chi^2 bound', '2.5% \chi^2 bound', 'Expected value');
+grid on;
+hold off;
+
+% --- Plot 2: Running mean of NIS ---
+figure;
+plot(1:M, running_mean, 'b-', 'LineWidth', 1.5);
+hold on;
+yline(dof, 'k--', 'LineWidth', 1.5, 'DisplayName', sprintf('Expected mean = %d', dof));
+xlabel('Number of measurements');
+ylabel('Running mean of NIS');
+title('Running Mean of NIS');
+legend('Running mean', 'Expected value');
+grid on;
+ylim([0 dof+0.5])
+hold off;
+
+% --- Plot 3: Running variance of NIS ---
+figure;
+plot(2:M, running_var(2:end), 'r-', 'LineWidth', 1.5);
+hold on;
+yline(2*dof, 'k--', 'LineWidth', 1.5, 'DisplayName', sprintf('Expected variance = %d', 2*dof));
+xlabel('Number of measurements');
+ylabel('Running variance of NIS');
+title('Running Variance of NIS');
+legend('Running variance', 'Expected value');
+grid on;
+ylim([0 2*dof+0.5])
 hold off;
