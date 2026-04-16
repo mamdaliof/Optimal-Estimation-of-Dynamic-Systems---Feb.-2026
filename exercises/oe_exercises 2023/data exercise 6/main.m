@@ -27,7 +27,10 @@ C0_a   = (0.04^2)  * eye(2);
 C0_t   = 300^2;
 C0_phi = 10^2;
 
+format shortG
 C0 = blkdiag(C0_xi, C0_v, C0_a, C0_t, C0_phi);
+disp("C0");
+disp(C0);
 
 %%  Q2 + Q5
 load('z_yacht.mat');
@@ -150,7 +153,7 @@ plot(X_est_log(1,:), X_est_log(2,:), 'b-', 'LineWidth', 1.5, 'DisplayName', 'Est
 
 meas_indices = imeas;
 plot(X_est_log(1, meas_indices), X_est_log(2, meas_indices), ...
-     '.m', 'MarkerSize', 15, 'DisplayName', 'Measurement update');
+     '.k', 'MarkerSize', 15, 'DisplayName', 'Measurement update');
 
 for k = 1:length(ellipse_times)
     idx  = ellipse_times(k);
@@ -206,13 +209,13 @@ fprintf('NIS values outside 95%% bounds: %d / %d (%.1f%%)\n', outside, M, 100*ou
 figure;
 stem(1:M, NIS_log, 'b', 'filled', 'MarkerSize', 4);
 hold on;
-yline(chi95, 'r--', 'LineWidth', 1.5, 'DisplayName', '97.5% bound');
-yline(chi5,  'g--', 'LineWidth', 1.5, 'DisplayName', '2.5% bound');
+yline(chi95, 'r--', 'LineWidth', 1.5, 'DisplayName', '95% bound');
+yline(chi5,  'g--', 'LineWidth', 1.5, 'DisplayName', '5% bound');
 yline(dof, 'k:',  'LineWidth', 1.5, 'DisplayName', sprintf('E[NIS]=dof=%d', dof));
 xlabel('Measurement index m');
 ylabel('NIS');
 title('Normalized Innovation Squared (NIS)');
-legend('NIS', '97.5% \chi^2 bound', '2.5% \chi^2 bound', 'Expected value');
+legend('NIS', '95% \chi^2 bound', '5% \chi^2 bound', 'Expected value');
 grid on;
 hold off;
 
@@ -241,3 +244,4 @@ legend('Running variance', 'Expected value');
 grid on;
 ylim([0 2*dof+0.5])
 hold off;
+

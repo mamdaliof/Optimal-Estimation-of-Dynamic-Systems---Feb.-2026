@@ -158,14 +158,70 @@ hold on;
 plot(1:length(meas_times), u_meas(1,:), 'r.', 'MarkerSize', 8, 'DisplayName', 'u_1 (bearing)');
 plot(1:length(meas_times), u_meas(2,:), 'b.', 'MarkerSize', 8, 'DisplayName', 'u_2 (speed)');
 plot(1:length(meas_times), u_meas(3,:), 'g.', 'MarkerSize', 8, 'DisplayName', 'u_3 (heading)');
-yline(0, 'k--', 'LineWidth', 1);
-yline(1, 'k--', 'LineWidth', 1);
+ylim([-0.1 1.1])
+h = yline(0, 'k--', 'LineWidth', 1);
+set(get(get(h,'Annotation'),'LegendInformation'),'IconDisplayStyle','off');
+h =yline(1, 'k--', 'LineWidth', 1);
+set(get(get(h,'Annotation'),'LegendInformation'),'IconDisplayStyle','off');
 yline(0.5, 'k:', 'LineWidth', 1, 'DisplayName', 'Expected mean');
 xlabel('Measurement index');
 ylabel('u_n(i)');
 title('Q3 – Test Variables u_n (should be uniform on [0,1])');
 legend; grid on; hold off;
+%% Q3 – Histograms + Autocorrelation
+u_labels = {'u_1 (bearing)', 'u_2 (speed)', 'u_3 (heading)'};
+colors   = {'r', 'b', 'g'};
+maxLag   = 20;   % number of lags for autocorrelation
 
+figure('Name', 'Q3 – Histograms of Test Variables');
+for n = 1:3
+    vals = u_meas(n, :);           % 1 × number_of_measurements
+    mu_n  = mean(vals);
+    var_n = var(vals);
+
+    subplot(3, 1, n);
+    histogram(vals, 10, 'Normalization', 'pdf', ...
+              'FaceColor', colors{n}, 'FaceAlpha', 0.6, 'EdgeColor', 'k');
+    hold on;
+    % Reference uniform PDF line
+    yline(1, 'k--', 'LineWidth', 1.5, 'DisplayName', 'Uniform PDF = 1');
+    xline(mu_n, 'm-', 'LineWidth', 1.5, 'DisplayName', sprintf('Mean = %.3f', mu_n));
+    hold off;
+    xlim([0 1]);
+    xlabel('Value');
+    ylabel('PDF');
+    title(sprintf('%s\n\\mu = %.3f,  \\sigma^2 = %.4f', u_labels{n}, mu_n, var_n));
+    legend('Location', 'best');
+    grid on;
+end
+sgtitle('Q3 – Histograms of Test Variables u_n (Uniformity Check)');
+
+%% Q3 – Autocorrelation of Test Variables
+figure('Name', 'Q3 – Autocorrelation of Test Variables');
+for n = 1:3
+    vals = u_meas(n, :);
+    % Normalised autocorrelation (zero-mean)
+    vals_zm = vals - mean(vals);
+    acf_full = xcorr(vals_zm, maxLag, 'coeff');   % symmetric, length 2*maxLag+1
+    lags     = -maxLag:maxLag;
+
+    % 95% confidence bounds for white noise: ±1.96/sqrt(N)
+    N_meas = length(vals);
+    conf   = 1.96 / sqrt(N_meas);
+
+    subplot(1, 3, n);
+    stem(lags, acf_full, colors{n}, 'filled', 'MarkerSize', 3); hold on;
+    yline( conf, 'k--', 'LineWidth', 1.2, 'DisplayName', '95% CI');
+    yline(-conf, 'k--', 'LineWidth', 1.2, 'HandleVisibility', 'off');
+    yline(0, 'k-', 'LineWidth', 0.8, 'HandleVisibility', 'off');
+    hold off;
+    xlabel('Lag');
+    ylabel('ACF');
+    title(sprintf('ACF – %s', u_labels{n}));
+    legend('ACF', '95% CI', 'Location', 'best');
+    grid on;
+end
+sgtitle('Q3 – Autocorrelation of Test Variables u_n');
 %% Q4 Plot
 figure;
 plot(1:length(meas_times), Keff_log, 'b-o', 'MarkerSize', 4, 'LineWidth', 1.2);
@@ -176,3 +232,121 @@ xlabel('Measurement index');
 ylabel('K_{eff}');
 title('Q4 – Effective Number of Particles');
 legend; grid on; hold off;
+
+%% Q6 
+X_est_ekf  = zeros(8, I);
+C_est_ekf  = zeros(8, 8, I);
+NIS_ekf    = zeros(1, length(data.imeas));
+NIS_idx    = 0;
+
+x_hat = x0;
+C_hat = C0;
+
+meas_pos = find(data.imeas == 1, 1);
+if ~isempty(meas_pos)
+    H      = Hjacobian(x_hat, x_beacon);
+    S      = H * C_hat * H' + Cn;
+    K      = C_hat * H' / S;
+    inn    = data.z(:, meas_pos) - hmeas(x_hat, x_beacon);
+    inn(1) = mod(inn(1) + 180, 360) - 180;
+    inn(3) = mod(inn(3) + 180, 360) - 180;
+    x_hat  = x_hat + K * inn;
+    C_hat  = C_hat - K * S * K';
+    NIS_idx = NIS_idx + 1;
+    NIS_ekf(NIS_idx) = inn' / S * inn;
+end
+X_est_ekf(:, 1)    = x_hat;
+C_est_ekf(:, :, 1) = C_hat;
+
+for i = 1:I-1
+    u_i    = [400; data.fi0(i)];   % <-- time-variant phi0
+    F      = Fjacobian(x_hat);
+    x_pred = fsys(x_hat, u_i);
+    C_pred = F * C_hat * F' + Cw;
+
+    meas_pos = find(data.imeas == i+1, 1);
+    if ~isempty(meas_pos)
+        H      = Hjacobian(x_pred, x_beacon);
+        S      = H * C_pred * H' + Cn;
+        K      = C_pred * H' / S;
+        inn    = data.z(:, meas_pos) - hmeas(x_pred, x_beacon);
+        inn(1) = mod(inn(1) + 180, 360) - 180;
+        inn(3) = mod(inn(3) + 180, 360) - 180;
+        x_hat  = x_pred + K * inn;
+        C_hat  = C_pred - K * S * K';
+        NIS_idx = NIS_idx + 1;
+        NIS_ekf(NIS_idx) = inn' / S * inn;
+    else
+        x_hat = x_pred;
+        C_hat = C_pred;
+    end
+    X_est_ekf(:, i+1)    = x_hat;
+    C_est_ekf(:, :, i+1) = C_hat;
+end
+NIS_ekf = NIS_ekf(1:NIS_idx);   % trim unused entries
+M_ekf   = NIS_idx;
+
+%% Q6 Plot 1 – Path + Uncertainty Ellipses
+ellipse_times_ekf = 1:250:I;
+figure; hold on;
+plot(X_est_ekf(1,:), X_est_ekf(2,:), 'b-', 'LineWidth', 1.5, 'DisplayName', 'EKF path');
+plot(X_est_ekf(1, data.imeas), X_est_ekf(2, data.imeas), ...
+     '.m', 'MarkerSize', 15, 'DisplayName', 'Measurement update');
+for k = 1:length(ellipse_times_ekf)
+    idx  = ellipse_times_ekf(k);
+    mu   = X_est_ekf(1:2, idx);
+    C2x2 = squeeze(C_est_ekf(1:2, 1:2, idx));
+    draw_ellipse(mu, C2x2, 'r-');
+    h = findobj(gca, 'Type', 'line', 'Color', [1 0 0]);
+    if k == 1
+        h(1).DisplayName = 'Uncertainty region';
+    else
+        h(1).HandleVisibility = 'off';
+    end
+end
+plot(x_beacon(1), x_beacon(2), 'g*', 'MarkerSize', 12, 'DisplayName', 'Beacon');
+xlabel('x position (m)'); ylabel('y position (m)');
+title('Q6 – EKF Path + Uncertainty Regions (time-variant \phi_0)');
+legend; grid on; hold off;
+
+%% Q6 Plot 2 – NIS
+dof   = 3;
+chi5  = chi2inv(0.05, dof);
+chi95 = chi2inv(0.95, dof);
+outside_ekf = sum(NIS_ekf < chi5 | NIS_ekf > chi95);
+fprintf('Q6 EKF – NIS outside 95%% bounds: %d / %d (%.1f%%)\n', ...
+        outside_ekf, M_ekf, 100*outside_ekf/M_ekf);
+
+figure;
+stem(1:M_ekf, NIS_ekf, 'b', 'filled', 'MarkerSize', 4); hold on;
+yline(chi95, 'r--', 'LineWidth', 1.5, 'DisplayName', '97.5% \chi^2 bound');
+yline(chi5,  'g--', 'LineWidth', 1.5, 'DisplayName', '2.5% \chi^2 bound');
+yline(dof,   'k:',  'LineWidth', 1.5, 'DisplayName', sprintf('E[NIS] = %d', dof));
+xlabel('Measurement index'); ylabel('NIS');
+title('Q6 – NIS of EKF (time-variant \phi_0)');
+legend; grid on; hold off;
+
+% Running mean of NIS
+running_mean_ekf = cumsum(NIS_ekf) ./ (1:M_ekf);
+figure;
+plot(1:M_ekf, running_mean_ekf, 'b-', 'LineWidth', 1.5); hold on;
+yline(dof, 'k--', 'LineWidth', 1.5, 'DisplayName', sprintf('Expected mean = %d', dof));
+xlabel('Number of measurements'); ylabel('Running mean of NIS');
+title('Q6 – Running Mean of NIS (EKF)');
+legend; grid on; ylim([0 dof+1]); hold off;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
